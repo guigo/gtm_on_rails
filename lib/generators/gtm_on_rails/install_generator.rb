@@ -10,10 +10,10 @@ module GtmOnRails
       end
 
       def insert_javascript_tag
-        inject_into_file "app/views/layouts/_overrides.html.erb", after: /<head[\s]?[^>]*>/ do
+        inject_into_file "app/views/layouts/_overrides.html.erb", after: /<% content_for :head do %>/ do
           "\n    <%= render_gtm_on_rails_tag_in_head %>\n"
         end
-        inject_into_file "app/views/layouts/_overrides.html.erb", after: /<body[\s]?[^>]*>/ do
+        inject_into_file "app/views/layouts/_overrides.html.erb", after: /<% content_for :body do %>/ do
           "\n    <%= render_gtm_on_rails_tag_in_body %>\n"
         end
       end
